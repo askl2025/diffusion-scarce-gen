@@ -17,6 +17,15 @@
     └── sdxl_multistyle.json      # SDXL多风格生成
 ```
 
+## 数据集
+
+本项目使用以下公开数据集：
+
+| 数据集 | 说明 | 下载地址 |
+|--------|------|----------|
+| KITTI 2D Object | 自动驾驶目标检测基准，7481张训练图像 | [KITTI官网](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=2d) |
+| CODA | 面向Corner Case的自动驾驶数据集 | [CODA官网](https://coda-dataset.github.io/download.html) |
+
 ## 快速使用
 
 ### Python脚本
