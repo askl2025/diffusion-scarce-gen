@@ -14,3 +14,7 @@ cover/
 *.pth
 
 .claude/
+
+HANDOFF.md
+
+__pycache__/*
