@@ -1,0 +1,16 @@
+# 忽略整个 output 文件夹
+output/
+
+# 忽略 input 文件夹下所有文件，但保留 sample001~003.jpg
+input/*
+!input/sample001.jpg
+!input/sample002.jpg
+!input/sample003.jpg
+
+# 忽略生成的 cover 文件夹
+cover/
+
+# 忽略预训练模型文件
+*.pth
+
+.claude/
