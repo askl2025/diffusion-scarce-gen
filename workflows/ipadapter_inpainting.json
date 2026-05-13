@@ -1,0 +1,1169 @@
+{
+  "id": "4c5b76b8-3017-4cd0-993f-05b0aa4e293c",
+  "revision": 0,
+  "last_node_id": 53,
+  "last_link_id": 102,
+  "nodes": [
+    {
+      "id": 23,
+      "type": "VAEDecode",
+      "pos": [
+        3838.61181640625,
+        154.03550720214844
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 29
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 52
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 24,
+      "type": "PreviewImage",
+      "pos": [
+        3836.525634765625,
+        330.5406799316406
+      ],
+      "size": [
+        142.376953125,
+        246.00003051757812
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_urls",
+          "name": "image_urls",
+          "type": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        1135.4906005859375,
+        486.0105285644531
+      ],
+      "size": [
+        274.080078125,
+        314.0000305175781
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          }
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            73
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "60e28f446a27eafe9d7f1819490866dfbebc848f3f333d2cb006610e0310db76.png",
+        "image"
+      ]
+    },
+    {
+      "id": 38,
+      "type": "IPAdapterAdvanced",
+      "pos": [
+        2069.025146484375,
+        168.77484130859375
+      ],
+      "size": [
+        270,
+        278
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 65
+        },
+        {
+          "label": "ipadapter",
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 68
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 73
+        },
+        {
+          "label": "image_negative",
+          "name": "image_negative",
+          "shape": 7,
+          "type": "IMAGE"
+        },
+        {
+          "label": "attn_mask",
+          "name": "attn_mask",
+          "shape": 7,
+          "type": "MASK"
+        },
+        {
+          "label": "clip_vision",
+          "name": "clip_vision",
+          "shape": 7,
+          "type": "CLIP_VISION",
+          "link": 71
+        },
+        {
+          "label": "weight",
+          "name": "weight",
+          "type": "FLOAT",
+          "widget": {
+            "name": "weight"
+          }
+        },
+        {
+          "label": "weight_type",
+          "name": "weight_type",
+          "type": "COMBO",
+          "widget": {
+            "name": "weight_type"
+          }
+        },
+        {
+          "label": "combine_embeds",
+          "name": "combine_embeds",
+          "type": "COMBO",
+          "widget": {
+            "name": "combine_embeds"
+          }
+        },
+        {
+          "label": "start_at",
+          "name": "start_at",
+          "type": "FLOAT",
+          "widget": {
+            "name": "start_at"
+          }
+        },
+        {
+          "label": "end_at",
+          "name": "end_at",
+          "type": "FLOAT",
+          "widget": {
+            "name": "end_at"
+          }
+        },
+        {
+          "label": "embeds_scaling",
+          "name": "embeds_scaling",
+          "type": "COMBO",
+          "widget": {
+            "name": "embeds_scaling"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            66
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterAdvanced",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1.0000000000000002,
+        "linear",
+        "concat",
+        0,
+        1,
+        "V only"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        1164.112060546875,
+        54.19008255004883
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          }
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            80,
+            91
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            92
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "clipspace/3a104e0679dbba46210b558c5a78debb_76599fd9e4de65a3a78ba4304d63d7067ffc6ff538924d2a5d3b10a2fc876f49.png [input]",
+        "image"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "KSampler",
+      "pos": [
+        3516.08154296875,
+        193.4394989013672
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 66
+        },
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 87
+        },
+        {
+          "label": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 89
+        },
+        {
+          "label": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 28
+        },
+        {
+          "label": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          }
+        },
+        {
+          "label": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          }
+        },
+        {
+          "label": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          }
+        },
+        {
+          "label": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          }
+        },
+        {
+          "label": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          }
+        },
+        {
+          "label": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        854028270544587,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 20,
+      "type": "VAEEncodeForInpaint",
+      "pos": [
+        2443.837158203125,
+        637.4806518554688
+      ],
+      "size": [
+        272.4048767089844,
+        98
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "pixels",
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 80
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 51
+        },
+        {
+          "label": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 93
+        },
+        {
+          "label": "grow_mask_by",
+          "name": "grow_mask_by",
+          "type": "INT",
+          "widget": {
+            "name": "grow_mask_by"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeForInpaint",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        20
+      ]
+    },
+    {
+      "id": 48,
+      "type": "InvertMask",
+      "pos": [
+        1938.6595458984375,
+        698.288818359375
+      ],
+      "size": [
+        140,
+        26
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 92
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            93
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InvertMask",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 36,
+      "type": "CheckpointLoaderSimple_Any",
+      "pos": [
+        1660.427734375,
+        47.907772064208984
+      ],
+      "size": [
+        270,
+        98
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "any",
+          "name": "any",
+          "shape": 7,
+          "type": "*"
+        },
+        {
+          "label": "ckpt_name",
+          "name": "ckpt_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "ckpt_name"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            65
+          ]
+        },
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            99,
+            100
+          ]
+        },
+        {
+          "label": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            51,
+            52
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple_Any",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "v1-5-pruned-emaonly.safetensors"
+      ]
+    },
+    {
+      "id": 40,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        1665.8194580078125,
+        245.37060546875
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "ipadapter_file",
+          "name": "ipadapter_file",
+          "type": "COMBO",
+          "widget": {
+            "name": "ipadapter_file"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IPADAPTER",
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            68
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "ip-adapter_sd15.safetensors"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "ControlNetLoader",
+      "pos": [
+        2458.363037109375,
+        95.802490234375
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "control_net_name",
+          "name": "control_net_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "control_net_name"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONTROL_NET",
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            98
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "control_v11p_sd15_inpaint.pth"
+      ]
+    },
+    {
+      "id": 53,
+      "type": "CLIPTextEncode",
+      "pos": [
+        2675.791259765625,
+        294.9837341308594
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 100
+        },
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            101
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "low quality, blurry, deformed, cartoon, illustration, floating object, no shadows, sharp edges between object and road, mismatched lighting, glowing edges, unrealistic textures, ghosting, double vision.gray blobs, silhouette, blurry, deformed"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "CLIPTextEncode",
+      "pos": [
+        2847.605224609375,
+        29.662044525146484
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 99
+        },
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            102
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "A high-resolution, photorealistic street view from a car-mounted camera in the KITTI dataset style. A group of pedestrians crossing the street, wearing casual colorful clothes, highly detailed skin and fabric textures, photorealistic, KITTI dataset style.The sun shines from the side, casting realistic, soft contact shadows on the ground where the object touches the road. Highly detailed textures of the road and the object, consistent lighting, cinematic automotive photography, 8k, sharp focus"
+      ]
+    },
+    {
+      "id": 42,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        1648.7015380859375,
+        414.7345886230469
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CLIP_VISION",
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "ACN_AdvancedControlNetApply_v2",
+      "pos": [
+        3114.409423828125,
+        566.337158203125
+      ],
+      "size": [
+        271.1734313964844,
+        266
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 102
+        },
+        {
+          "label": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 101
+        },
+        {
+          "label": "control_net",
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 98
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 91
+        },
+        {
+          "label": "mask_optional",
+          "name": "mask_optional",
+          "shape": 7,
+          "type": "MASK"
+        },
+        {
+          "label": "timestep_kf",
+          "name": "timestep_kf",
+          "shape": 7,
+          "type": "TIMESTEP_KEYFRAME"
+        },
+        {
+          "label": "latent_kf_override",
+          "name": "latent_kf_override",
+          "shape": 7,
+          "type": "LATENT_KEYFRAME"
+        },
+        {
+          "label": "weights_override",
+          "name": "weights_override",
+          "shape": 7,
+          "type": "CONTROL_NET_WEIGHTS"
+        },
+        {
+          "label": "vae_optional",
+          "name": "vae_optional",
+          "shape": 7,
+          "type": "VAE"
+        },
+        {
+          "label": "strength",
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          }
+        },
+        {
+          "label": "start_percent",
+          "name": "start_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "start_percent"
+          }
+        },
+        {
+          "label": "end_percent",
+          "name": "end_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "end_percent"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            87
+          ]
+        },
+        {
+          "label": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            89
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ACN_AdvancedControlNetApply_v2",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      28,
+      20,
+      0,
+      18,
+      3,
+      "LATENT"
+    ],
+    [
+      29,
+      18,
+      0,
+      23,
+      0,
+      "LATENT"
+    ],
+    [
+      30,
+      23,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      51,
+      36,
+      2,
+      20,
+      1,
+      "VAE"
+    ],
+    [
+      52,
+      36,
+      2,
+      23,
+      1,
+      "VAE"
+    ],
+    [
+      65,
+      36,
+      0,
+      38,
+      0,
+      "MODEL"
+    ],
+    [
+      66,
+      38,
+      0,
+      18,
+      0,
+      "MODEL"
+    ],
+    [
+      68,
+      40,
+      0,
+      38,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      71,
+      42,
+      0,
+      38,
+      5,
+      "CLIP_VISION"
+    ],
+    [
+      73,
+      3,
+      0,
+      38,
+      2,
+      "IMAGE"
+    ],
+    [
+      80,
+      1,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      87,
+      46,
+      0,
+      18,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      89,
+      46,
+      1,
+      18,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      91,
+      1,
+      0,
+      46,
+      3,
+      "IMAGE"
+    ],
+    [
+      92,
+      1,
+      1,
+      48,
+      0,
+      "MASK"
+    ],
+    [
+      93,
+      48,
+      0,
+      20,
+      2,
+      "MASK"
+    ],
+    [
+      98,
+      51,
+      0,
+      46,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      99,
+      36,
+      1,
+      52,
+      0,
+      "CLIP"
+    ],
+    [
+      100,
+      36,
+      1,
+      53,
+      0,
+      "CLIP"
+    ],
+    [
+      101,
+      53,
+      0,
+      46,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      102,
+      52,
+      0,
+      46,
+      0,
+      "CONDITIONING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "title": "Group2 IPAdapter局部重绘",
+      "bounding": [
+        1626.7769775390625,
+        -59.95771408081055,
+        737.0314331054688,
+        584.4874267578125
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Group3 局部重绘",
+      "bounding": [
+        2404.616455078125,
+        -71.99739074707031,
+        1306.3570556640625,
+        980.3839721679688
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "links_added_by_ue": [],
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "ds": {
+      "scale": 0.7247295000000004,
+      "offset": [
+        -2613.958311631057,
+        320.1407856880867
+      ]
+    },
+    "frontendVersion": "1.23.0",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
