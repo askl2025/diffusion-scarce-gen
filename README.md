@@ -26,6 +26,12 @@
 | KITTI 2D Object | 自动驾驶目标检测基准，7481张训练图像 | [KITTI官网](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=2d) |
 | CODA | 面向Corner Case的自动驾驶数据集 | [CODA官网](https://coda-dataset.github.io/download.html) |
 
+## 相关项目
+
+| 项目 | 说明 | 链接 |
+|------|------|------|
+| LaneDetect | 基于Ultra-Fast-Lane-Detection的车道线检测与掩膜生成 | [GitHub](https://github.com/X0H3M1/LaneDetect) |
+
 ## 快速使用
 
 ### Python脚本
