@@ -7,7 +7,10 @@
 ```
 ├── scripts/                # Python数据处理脚本
 │   ├── scarce_sample_filter.py   # CODA数据集稀缺样本筛选
-│   └── coda_to_kitti.py          # CODA标注格式转KITTI格式
+│   ├── coda_to_kitti.py          # CODA标注格式转KITTI格式
+│   └── LanDetect/                # 车道线检测与掩膜生成 (Ultra-Fast-Lane-Detection)
+│       ├── detect_lanes.py       # 主脚本：批量生成二值掩膜
+│       └── generate_cover.py     # 覆盖图脚本：车道线红色叠加可视化
 │
 └── workflows/              # ComfyUI工作流 (JSON)
     ├── segment_background.json   # 抠图换背景 (GroundingDINO + SAM)
@@ -30,7 +33,7 @@
 
 | 项目 | 说明 | 链接 |
 |------|------|------|
-| LaneDetect | 基于Ultra-Fast-Lane-Detection的车道线检测与掩膜生成 | [GitHub](https://github.com/X0H3M1/LaneDetect) |
+| Ultra-Fast-Lane-Detection | LanDetect 基于的原始车道线检测模型 (ECCV 2020) | [GitHub](https://github.com/cfzd/Ultra-Fast-Lane-Detection) |
 
 ## 快速使用
 
@@ -47,6 +50,30 @@ python scripts/coda_to_kitti.py
 ```
 
 使用前请修改脚本中的数据路径配置。
+
+### LanDetect 车道线检测
+
+```bash
+cd scripts/LanDetect
+pip install torch torchvision opencv-python numpy scipy gdown
+
+# 生成车道线二值掩膜 (output/)
+python detect_lanes.py
+
+# 生成车道线覆盖图 — 红色车道叠加到原图 (cover/)
+python generate_cover.py
+python generate_cover.py --alpha 0.6 --lane-width 20
+
+# 命令行参数
+#   --input-dir   ./input         输入图片目录
+#   --output-dir  ./output(cover)  输出目录
+#   --model-path  ./culane_18.pth  模型路径 (缺失时自动下载)
+#   --lane-width  25               车道线宽度 (px)
+#   --alpha       0.45             覆盖图透明度 (仅 generate_cover.py)
+#   --no-cuda                      强制 CPU
+```
+
+模型基于 Ultra-Fast-Lane-Detection (ECCV 2020)，使用 CULane 预训练的 ResNet-18 backbone。
 
 ### ComfyUI工作流
 

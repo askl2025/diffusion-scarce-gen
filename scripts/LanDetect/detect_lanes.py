@@ -1,8 +1,8 @@
 """
-Lane detection mask pipeline.
-Detects lane lines in road images and generates binary masks.
+车道线检测与掩膜生成管线。
+检测道路图片中的车道线并生成二值掩膜。
 
-Based on: Ultra-Fast-Lane-Detection (ECCV 2020)
+基于: Ultra-Fast-Lane-Detection (ECCV 2020)
 https://github.com/cfzd/Ultra-Fast-Lane-Detection
 """
 
@@ -23,7 +23,7 @@ from PIL import Image
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # ---------------------------------------------------------------------------
-# Configuration constants
+# 配置常量
 # ---------------------------------------------------------------------------
 
 CULANE_ROW_ANCHOR = np.array([
@@ -31,8 +31,8 @@ CULANE_ROW_ANCHOR = np.array([
     219, 228, 238, 248, 258, 267, 277, 287
 ], dtype=np.float32)
 
-GRIDING_NUM = 200             # classification grid columns
-CLS_NUM_PER_LANE = 18         # number of row anchors
+GRIDING_NUM = 200             # 分类网格列数
+CLS_NUM_PER_LANE = 18         # 行锚点数量
 NUM_LANES = 4
 
 RESIZE_H = 288
@@ -44,12 +44,12 @@ IMAGENET_STD  = (0.229, 0.224, 0.225)
 IMG_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.tif'}
 
 # ---------------------------------------------------------------------------
-# Model architecture (replicated from Ultra-Fast-Lane-Detection)
+# 模型架构（复现自 Ultra-Fast-Lane-Detection）
 # ---------------------------------------------------------------------------
 
 
 class ConvBNReLU(nn.Module):
-    """Conv2d -> BatchNorm -> ReLU block."""
+    """Conv2d → BatchNorm → ReLU 模块。"""
 
     def __init__(self, in_channels, out_channels, kernel_size=1,
                  stride=1, padding=0, dilation=1):
@@ -65,7 +65,7 @@ class ConvBNReLU(nn.Module):
 
 
 class ResNetBackbone(nn.Module):
-    """ResNet backbone that returns multi-scale features."""
+    """ResNet 骨干网络，返回多尺度特征。"""
 
     def __init__(self, layers='18', pretrained=False):
         super().__init__()
@@ -106,7 +106,7 @@ class ResNetBackbone(nn.Module):
 
 
 class ParsingNet(nn.Module):
-    """Ultra-Fast-Lane-Detection parsing network."""
+    """Ultra-Fast-Lane-Detection 解析网络。"""
 
     def __init__(self, size=(288, 800), pretrained=False, backbone='18',
                  cls_dim=(201, 18, 4), use_aux=False):
@@ -117,10 +117,10 @@ class ParsingNet(nn.Module):
 
         self.model = ResNetBackbone(layers=backbone, pretrained=pretrained)
 
-        # 1x1 conv to reduce channels to 8
+        # 1x1 卷积将通道数降至 8
         self.pool = nn.Conv2d(self.model.out_channels, 8, kernel_size=1)
 
-        # Spatial size after 5 downsamplings: H/32 x W/32
+        # 经过 5 次下采样后的空间尺寸: H/32 × W/32
         h = size[0] // 32  # 288/32 = 9
         w = size[1] // 32  # 800/32 = 25
         flat_dim = 8 * h * w  # 1800
@@ -134,7 +134,7 @@ class ParsingNet(nn.Module):
         )
 
         if use_aux:
-            # Auxiliary segmentation head (not used for CULane inference)
+            # 辅助分割头（CULane 推理时不使用）
             self.aux_header2 = ConvBNReLU(128, 128, kernel_size=3,
                                           stride=1, padding=1)
             self.aux_header3 = ConvBNReLU(256, 128, kernel_size=3,
@@ -170,37 +170,37 @@ def _init_weights(m):
 
 
 # ---------------------------------------------------------------------------
-# Post-processing
+# 后处理
 # ---------------------------------------------------------------------------
 
 def _softmax_np(x, axis=0):
-    """NumPy softmax fallback (doesn't require scipy)."""
+    """NumPy 版 softmax（无需 scipy）。"""
     e_x = np.exp(x - np.max(x, axis=axis, keepdims=True))
     return e_x / np.sum(e_x, axis=axis, keepdims=True)
 
 
 def compute_lane_points(output, orig_w, orig_h):
     """
-    Decode model output into lane point coordinates in original image space.
+    将模型输出解码为原始图像空间中的车道线点坐标。
 
-    Args:
-        output: model output tensor of shape (1, 201, 18, 4)
-        orig_w, orig_h: original image width and height
+    参数:
+        output: 模型输出张量，形状 (1, 201, 18, 4)
+        orig_w, orig_h: 原始图像的宽和高
 
-    Returns:
-        List of 4 lanes, each a list of (x, y) points in original pixels.
+    返回:
+        包含 4 条车道线的列表，每条车道线为 (x, y) 点坐标列表（原始像素坐标）。
     """
     out_j = output[0].data.cpu().numpy()           # (201, 18, 4)
-    out_j = out_j[:, ::-1, :]                       # reverse row anchor dim
-    # Now axis=1 index 0 → bottom anchor (287), index 17 → top anchor (121)
+    out_j = out_j[:, ::-1, :]                       # 反转行锚点维度
+    # 此时 axis=1 索引 0 → 底部锚点 (287)，索引 17 → 顶部锚点 (121)
 
-    prob = _softmax_np(out_j[:-1, :, :], axis=0)    # softmax over 200 grid cells
+    prob = _softmax_np(out_j[:-1, :, :], axis=0)    # 对 200 个网格单元做 softmax
     idx = np.arange(1, GRIDING_NUM + 1).reshape(-1, 1, 1)
-    loc = np.sum(prob * idx, axis=0)                 # (18, 4) expected grid position
+    loc = np.sum(prob * idx, axis=0)                 # (18, 4) 期望网格位置
 
-    # Suppress "no-lane" predictions
+    # 抑制"无线"预测
     out_j_argmax = np.argmax(out_j, axis=0)          # (18, 4)
-    loc[out_j_argmax == GRIDING_NUM] = 0              # GRIDING_NUM = 200 = no-lane class
+    loc[out_j_argmax == GRIDING_NUM] = 0              # GRIDING_NUM=200 = 无线类别
 
     col_sample = np.linspace(0, RESIZE_W - 1, GRIDING_NUM)
     col_sample_w = col_sample[1] - col_sample[0]
@@ -224,19 +224,19 @@ def compute_lane_points(output, orig_w, orig_h):
 
 def generate_mask(lanes_points, h, w, lane_width=25):
     """
-    Draw lane polylines on a binary mask.
+    在二值掩膜上绘制车道折线。
 
-    Args:
-        lanes_points: list of 4 lanes, each a list of (x, y) points
-        h, w: mask height and width (matches original image)
-        lane_width: line thickness in pixels
+    参数:
+        lanes_points: 包含 4 条车道线的列表，每条车道线为 (x, y) 点坐标列表
+        h, w: 掩膜高度和宽度（与原图一致）
+        lane_width: 线条粗细（像素）
 
-    Returns:
-        np.uint8 array of shape (h, w), values 0 or 255
+    返回:
+        np.uint8 数组，形状 (h, w)，取值 0 或 255
     """
     mask = np.zeros((h, w), dtype=np.uint8)
     for pts in lanes_points:
-        pts = [p for p in pts if p[0] > 0]  # filter invalid
+        pts = [p for p in pts if p[0] > 0]  # 过滤无效点
         if len(pts) >= 2:
             pts_array = np.array(pts, dtype=np.int32).reshape(-1, 1, 2)
             cv2.polylines(mask, [pts_array], isClosed=False,
@@ -245,35 +245,35 @@ def generate_mask(lanes_points, h, w, lane_width=25):
 
 
 # ---------------------------------------------------------------------------
-# Model download and loading
+# 模型下载与加载
 # ---------------------------------------------------------------------------
 
 GDRIVE_FILE_ID = '1zXBRTw50WOzvUp6XKsi8Zrk3MUC3uFuq'
 
 
 def download_model(model_path):
-    """Attempt to download pretrained model via gdown."""
-    print(f"Model not found at: {model_path}")
-    print("Attempting download from Google Drive...")
+    """尝试通过 gdown 下载预训练模型。"""
+    print(f"未找到模型: {model_path}")
+    print("尝试从 Google Drive 下载...")
     try:
         import gdown
         gdown.download(id=GDRIVE_FILE_ID, output=str(model_path), quiet=False)
         if model_path.exists():
-            print("Download complete.")
+            print("下载完成。")
             return True
-        print("Download failed — file not saved.")
+        print("下载失败 — 文件未保存。")
     except ImportError:
-        print("'gdown' is not installed. Install it with:  pip install gdown")
-        print(f"Or manually download from: "
+        print("'gdown' 未安装。请使用: pip install gdown")
+        print(f"或手动从以下地址下载: "
               f"https://drive.google.com/file/d/{GDRIVE_FILE_ID}/view")
-        print(f"And place it at: {model_path}")
+        print(f"并放置到: {model_path}")
     except Exception as e:
-        print(f"Download error: {e}")
+        print(f"下载错误: {e}")
     return False
 
 
 def load_model(model_path, device):
-    """Build ParsingNet and load pretrained weights."""
+    """构建 ParsingNet 并加载预训练权重。"""
     cls_dim = (GRIDING_NUM + 1, CLS_NUM_PER_LANE, NUM_LANES)  # (201, 18, 4)
     model = ParsingNet(size=(RESIZE_H, RESIZE_W), pretrained=False,
                        backbone='18', cls_dim=cls_dim, use_aux=False)
@@ -281,7 +281,7 @@ def load_model(model_path, device):
 
     ckpt = torch.load(str(model_path), map_location='cpu', weights_only=True)
 
-    # Handle different checkpoint formats
+    # 兼容不同检查点格式
     if 'model' in ckpt:
         state_dict = ckpt['model']
     elif 'state_dict' in ckpt:
@@ -289,7 +289,7 @@ def load_model(model_path, device):
     else:
         state_dict = ckpt
 
-    # Strip "module." prefix from DataParallel
+    # 去除 DataParallel 的 "module." 前缀
     cleaned = {}
     for k, v in state_dict.items():
         new_k = k[7:] if k.startswith('module.') else k
@@ -297,22 +297,22 @@ def load_model(model_path, device):
 
     missing, unexpected = model.load_state_dict(cleaned, strict=False)
     if missing:
-        print(f"Info: {len(missing)} missing keys (aux head or non-critical).")
+        print(f"提示: {len(missing)} 个缺失键（辅助头或非关键项）。")
     if unexpected:
-        print(f"Info: {len(unexpected)} unexpected keys (ignored).")
+        print(f"提示: {len(unexpected)} 个多余键（已忽略）。")
 
     model.to(device)
     model.eval()
-    print(f"Model loaded on {device}.")
+    print(f"模型已加载到 {device}。")
     return model
 
 
 # ---------------------------------------------------------------------------
-# Image processing
+# 图像处理
 # ---------------------------------------------------------------------------
 
 def process_images(input_dir, output_dir, model, device, lane_width):
-    """Process all images in input_dir and write masks to output_dir."""
+    """处理 input_dir 中所有图片，将掩膜写入 output_dir。"""
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -329,22 +329,22 @@ def process_images(input_dir, output_dir, model, device, lane_width):
     )
 
     if not image_files:
-        print(f"No image files found in {input_dir}")
+        print(f"在 {input_dir} 中未找到图片文件")
         return
 
-    print(f"Found {len(image_files)} image(s) to process.\n")
+    print(f"找到 {len(image_files)} 张图片待处理。\n")
 
     for img_path in image_files:
-        print(f"Processing: {img_path.name} ...", end=" ", flush=True)
+        print(f"处理中: {img_path.name} ...", end=" ", flush=True)
 
         img = cv2.imread(str(img_path))
         if img is None:
-            print("SKIP (unreadable)")
+            print("跳过（无法读取）")
             continue
 
         orig_h, orig_w = img.shape[:2]
 
-        # BGR → RGB → PIL → tensor
+        # BGR → RGB → PIL → 张量
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img_pil = Image.fromarray(img_rgb)
         tensor = transform(img_pil).unsqueeze(0).to(device)
@@ -355,34 +355,41 @@ def process_images(input_dir, output_dir, model, device, lane_width):
         lanes = compute_lane_points(output, orig_w, orig_h)
         mask = generate_mask(lanes, orig_h, orig_w, lane_width=lane_width)
 
+        # 评估输出掩膜：白色像素占比
+        white_ratio = np.count_nonzero(mask) / mask.size
+
         out_name = f"{img_path.stem}_mask.png"
         out_path = output_dir / out_name
         cv2.imwrite(str(out_path), mask)
-        print(f"OK → {out_name}")
+
+        if white_ratio < 0.01:
+            print(f"警告：检测到的车道线像素仅占 {white_ratio:.2%}，可能未识别到车道 → {out_name}")
+        else:
+            print(f"完成 → {out_name}")
 
 
 # ---------------------------------------------------------------------------
-# Entry point
+# 入口
 # ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Detect lanes in road images and generate binary masks.")
+        description="检测道路图片中的车道线并生成二值掩膜。")
     parser.add_argument('--input-dir', default='./input',
-                        help='Directory containing input images')
+                        help='输入图片目录')
     parser.add_argument('--output-dir', default='./output',
-                        help='Directory for output mask PNGs')
+                        help='输出掩膜 PNG 目录')
     parser.add_argument('--model-path', default='./culane_18.pth',
-                        help='Path to pretrained model (.pth) file')
+                        help='预训练模型 (.pth) 文件路径')
     parser.add_argument('--lane-width', type=int, default=25,
-                        help='Lane line thickness in mask (pixels)')
+                        help='掩膜中车道线宽度（像素）')
     parser.add_argument('--no-cuda', action='store_true',
-                        help='Force CPU even if CUDA is available')
+                        help='强制使用 CPU，即使 CUDA 可用')
     args = parser.parse_args()
 
     device = torch.device('cuda' if torch.cuda.is_available()
                           and not args.no_cuda else 'cpu')
-    print(f"Device: {device}")
+    print(f"设备: {device}")
 
     model_path = Path(args.model_path)
     if not model_path.exists():
@@ -392,7 +399,7 @@ def main():
     model = load_model(model_path, device)
     process_images(args.input_dir, args.output_dir, model, device,
                    lane_width=args.lane_width)
-    print("\nDone.")
+    print("\n完成。")
 
 
 if __name__ == '__main__':

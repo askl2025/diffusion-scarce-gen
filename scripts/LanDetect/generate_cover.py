@@ -1,6 +1,6 @@
 """
-Generate lane detection overlay visualizations.
-Draws detected lane lines (red) on top of original road images.
+车道线检测覆盖图生成。
+将检测到的车道线以红色叠加到原始道路图片上。
 """
 
 import argparse
@@ -17,7 +17,7 @@ from PIL import Image
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# Import pipeline components from detect_lanes
+# 从 detect_lanes 导入管线组件
 from detect_lanes import (
     CULANE_ROW_ANCHOR, GRIDING_NUM, CLS_NUM_PER_LANE, NUM_LANES,
     RESIZE_H, RESIZE_W, IMAGENET_MEAN, IMAGENET_STD, IMG_EXTENSIONS,
@@ -49,10 +49,10 @@ def load_model(model_path, device):
 
 def generate_cover(img_path, model, device, lane_width=25, alpha=0.45):
     """
-    Generate an overlay image with detected lanes highlighted.
+    生成车道线叠加覆盖图。
 
-    Returns:
-        overlay image (BGR ndarray) or None on failure.
+    返回:
+        覆盖图（BGR ndarray），失败时返回 None。
     """
     img = cv2.imread(str(img_path))
     if img is None:
@@ -60,7 +60,7 @@ def generate_cover(img_path, model, device, lane_width=25, alpha=0.45):
 
     orig_h, orig_w = img.shape[:2]
 
-    # Preprocess
+    # 预处理
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img_pil = Image.fromarray(img_rgb)
     transform = transforms.Compose([
@@ -70,13 +70,13 @@ def generate_cover(img_path, model, device, lane_width=25, alpha=0.45):
     ])
     tensor = transform(img_pil).unsqueeze(0).to(device)
 
-    # Inference
+    # 推理
     with torch.no_grad():
         output = model(tensor)
 
     lanes = compute_lane_points(output, orig_w, orig_h)
 
-    # Draw lanes on mask
+    # 在掩膜上绘制车道线
     mask = np.zeros((orig_h, orig_w), dtype=np.uint8)
     for pts in lanes:
         pts = [p for p in pts if p[0] > 0]
@@ -85,9 +85,9 @@ def generate_cover(img_path, model, device, lane_width=25, alpha=0.45):
             cv2.polylines(mask, [pts_array], isClosed=False,
                           color=255, thickness=lane_width)
 
-    # Colorize mask: red lanes
+    # 掩膜着色：红色车道线
     overlay = img.copy()
-    overlay[mask == 255] = (0, 0, 255)  # BGR red
+    overlay[mask == 255] = (0, 0, 255)  # BGR 红色
 
     blended = cv2.addWeighted(img, 1 - alpha, overlay, alpha, 0)
     return blended
@@ -95,24 +95,24 @@ def generate_cover(img_path, model, device, lane_width=25, alpha=0.45):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate lane detection cover/overlay images.")
+        description="生成车道线检测覆盖图/叠加图。")
     parser.add_argument('--input-dir', default='./input',
-                        help='Directory containing input images')
+                        help='输入图片目录')
     parser.add_argument('--output-dir', default='./cover',
-                        help='Directory for cover images')
+                        help='覆盖图输出目录')
     parser.add_argument('--model-path', default='./culane_18.pth',
-                        help='Path to pretrained model (.pth) file')
+                        help='预训练模型 (.pth) 文件路径')
     parser.add_argument('--lane-width', type=int, default=25,
-                        help='Lane line thickness (pixels)')
+                        help='车道线宽度（像素）')
     parser.add_argument('--alpha', type=float, default=0.45,
-                        help='Overlay opacity (0-1)')
+                        help='覆盖图透明度 (0-1)')
     parser.add_argument('--no-cuda', action='store_true',
-                        help='Force CPU')
+                        help='强制使用 CPU')
     args = parser.parse_args()
 
     device = torch.device('cuda' if torch.cuda.is_available()
                           and not args.no_cuda else 'cpu')
-    print(f"Device: {device}")
+    print(f"设备: {device}")
 
     model_path = Path(args.model_path)
     if not model_path.exists():
@@ -131,26 +131,26 @@ def main():
     )
 
     if not image_files:
-        print(f"No image files found in {input_dir}")
+        print(f"在 {input_dir} 中未找到图片文件")
         return
 
-    print(f"Found {len(image_files)} image(s).\n")
+    print(f"找到 {len(image_files)} 张图片。\n")
 
     for img_path in image_files:
-        print(f"Processing: {img_path.name} ...", end=" ", flush=True)
+        print(f"处理中: {img_path.name} ...", end=" ", flush=True)
         result = generate_cover(img_path, model, device,
                                 lane_width=args.lane_width,
                                 alpha=args.alpha)
         if result is None:
-            print("SKIP (unreadable)")
+            print("跳过（无法读取）")
             continue
 
         out_name = f"{img_path.stem}_cover.jpg"
         out_path = output_dir / out_name
         cv2.imwrite(str(out_path), result, [cv2.IMWRITE_JPEG_QUALITY, 95])
-        print(f"OK → {out_name}")
+        print(f"完成 → {out_name}")
 
-    print("\nDone.")
+    print("\n完成。")
 
 
 if __name__ == '__main__':
