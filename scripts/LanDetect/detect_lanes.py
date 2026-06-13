@@ -222,9 +222,9 @@ def compute_lane_points(output, orig_w, orig_h):
     return lanes
 
 
-def generate_mask(lanes_points, h, w, lane_width=25):
+def generate_mask(lanes_points, h, w, lane_width=125):
     """
-    在二值掩膜上绘制车道折线。
+    在三通道彩色掩膜上绘制车道折线。
 
     参数:
         lanes_points: 包含 4 条车道线的列表，每条车道线为 (x, y) 点坐标列表
@@ -232,15 +232,15 @@ def generate_mask(lanes_points, h, w, lane_width=25):
         lane_width: 线条粗细（像素）
 
     返回:
-        np.uint8 数组，形状 (h, w)，取值 0 或 255
+        np.uint8 数组，形状 (h, w, 3)，车道=绿色(0,255,0)，背景=黑色(0,0,0)
     """
-    mask = np.zeros((h, w), dtype=np.uint8)
+    mask = np.zeros((h, w, 3), dtype=np.uint8)
     for pts in lanes_points:
         pts = [p for p in pts if p[0] > 0]  # 过滤无效点
         if len(pts) >= 2:
             pts_array = np.array(pts, dtype=np.int32).reshape(-1, 1, 2)
             cv2.polylines(mask, [pts_array], isClosed=False,
-                          color=255, thickness=lane_width)
+                          color=(0, 255, 0), thickness=lane_width)
     return mask
 
 
@@ -355,15 +355,16 @@ def process_images(input_dir, output_dir, model, device, lane_width):
         lanes = compute_lane_points(output, orig_w, orig_h)
         mask = generate_mask(lanes, orig_h, orig_w, lane_width=lane_width)
 
-        # 评估输出掩膜：白色像素占比
-        white_ratio = np.count_nonzero(mask) / mask.size
+        # 评估输出掩膜：绿色像素占比
+        green_pixels = np.count_nonzero(mask[:, :, 1])  # G 通道
+        green_ratio = green_pixels / (orig_h * orig_w)
 
         out_name = f"{img_path.stem}_mask.png"
         out_path = output_dir / out_name
         cv2.imwrite(str(out_path), mask)
 
-        if white_ratio < 0.01:
-            print(f"警告：检测到的车道线像素仅占 {white_ratio:.2%}，可能未识别到车道 → {out_name}")
+        if green_ratio < 0.01:
+            print(f"警告：检测到的车道线像素仅占 {green_ratio:.2%}，可能未识别到车道 → {out_name}")
         else:
             print(f"完成 → {out_name}")
 
@@ -381,7 +382,7 @@ def main():
                         help='输出掩膜 PNG 目录')
     parser.add_argument('--model-path', default='./culane_18.pth',
                         help='预训练模型 (.pth) 文件路径')
-    parser.add_argument('--lane-width', type=int, default=25,
+    parser.add_argument('--lane-width', type=int, default=125,
                         help='掩膜中车道线宽度（像素）')
     parser.add_argument('--no-cuda', action='store_true',
                         help='强制使用 CPU，即使 CUDA 可用')
