@@ -38,6 +38,8 @@ python scripts/export_workflows.py
 
 核心安装足以运行CPU测试和导出API图。车道模型另装`requirements/lane.txt`，语义保护另装`requirements/scene.txt`。ComfyUI、模型权重与节点需要单独配置；本仓库不含模型权重、运行环境或LoRA训练材料。
 
+本次本地27项CPU检查及依赖版本见[验证记录](docs/validation.md)。GitHub自动检查状态以对应提交的Actions页面为准。
+
 ## 启动网页
 
 先完成[部署说明](docs/deployment.md)中的模型、节点和共享输入目录配置，然后运行：
