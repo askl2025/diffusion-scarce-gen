@@ -1,0 +1,21 @@
+Parameter screen decision (method key opened only after both reviewers froze labels)
+
+Six selected native workflow controls, one fixed seed each. Two single-factor treatments: steps30->50 and guidance30->20. This is a development pilot, not a random-set success-rate estimate. Both reviews are Codex auxiliary judgments, not strict double-blind human review.
+
+Frozen review digests:
+reviewer-root.json 9b9eedaf15dcfc4e6afb53c33026a5892db123640f964e04a1fdda3c38f09e1e
+reviewer-visual.json 02dac3b2a57454c56e45bb81cbcbcdb64904aa0002b2ccf987ebc3870be2b343
+
+Unblinding:
+P001 A=guidance20 B=control C=steps50
+P002 A=steps50 B=control C=guidance20
+P003 A=guidance20 B=steps50 C=control
+P004 A=steps50 B=guidance20 C=control
+P005 A=steps50 B=guidance20 C=control
+P006 A=steps50 B=control C=guidance20
+
+Shared observations: P003 guidance20 adds unwanted black marks to the warning symbol, while none of the three candidates fixes the single-pole portable-stand mismatch. P004 front tire/contact remains unverifiable in all treatments at the hedge/curb location. Most other differences are small; the root reviewer weakly preferred guidance20 in two pedestrian samples, but the independent reviewer kept ties. No demonstrated stable overall realism improvement from 50 steps or a universal guidance reduction.
+
+Decision: retain the current 30-step/guidance30 defaults. Keep 50 steps and guidance20 as recorded experimental treatments, not a claimed upgrade. Continue geometry/placement tests and assess object-only refinement only after its target mask and structure have been reviewed. Historical triangle_stand cases must not be generalized to the current webpage rectangular-mask default.
+
+Execution medians in this six-pair pilot: control 19.985 seconds; steps50 31.905 seconds (about 59.6% higher engine execution time). These are engine observations on this server, not complete end-to-end latency or a general benchmark.

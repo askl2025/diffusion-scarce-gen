@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>RoadLab · 道路场景生成</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="shell">
+  <header><a class="brand" href="./" aria-label="RoadLab 首页"><span class="brandmark">R<span>↗</span></span><span>RoadLab<small>SITP · 场景实验室</small></span></a><div class="service" id="service" role="status"><i></i><span>正在连接服务</span></div></header>
+  <section class="intro"><div><div class="eyebrow">ROAD SCENE STUDIO / 01</div><h1>从一张道路图，<br>到一个新场景<span>。</span></h1><p>上传图片，选择物体与位置，完成遮罩生成与场景重绘。</p></div><div class="flow-label"><span>01 上传道路图</span><b>↗</b><span>02 选择物体与区域</span><b>↗</b><span>03 生成新场景</span></div></section>
+  <main class="workspace">
+    <section class="panel controls" aria-labelledby="input-heading">
+      <div class="panel-heading"><h2 id="input-heading"><em>01</em> 输入与设置</h2><span class="caps">INPUT</span></div>
+      <input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden>
+      <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="选择或拖入道路图片">
+        <div class="upload-empty" id="upload-empty"><div class="upload-icon">↥</div><strong>拖入一张道路图片</strong><span>或点击选择文件</span><small>JPG / PNG / WebP · 最大 12 MB</small></div>
+        <img id="upload-preview" alt="待处理的道路图片" hidden><div id="replace-hint" class="replace-hint" hidden>点击替换图片 ↗</div>
+      </div>
+      <div class="file-meta" id="file-meta">建议选择车道标线清晰的前向道路照片</div>
+      <label class="field-label" for="object-type">生成物体 <span>选择本次生成类别</span></label>
+      <select class="object-select" id="object-type"><option value="traffic_cone">交通锥 / 路障 · 沿车道线</option><option value="dustbin">垃圾桶 · 单个物体</option><option value="warning_sign">简单警示牌（！）</option><option value="pedestrian">背向行人 · 人行道</option></select>
+      <div id="placement-controls" hidden>
+        <div id="placement-mode-field"><label class="field-label" for="placement-mode">放置方式</label>
+        <select class="object-select" id="placement-mode"><option value="manual">手动确认位置</option><option value="auto">根据车道线自动建议</option></select></div>
+        <p class="field-note" id="placement-context" hidden></p>
+        <p class="field-note" id="placement-note">点击下方图片设置底部接地点，绿色框表示允许重绘的区域。</p>
+        <div id="manual-controls">
+          <canvas id="placement-canvas" aria-label="点击选择物体底部位置" hidden></canvas>
+          <div class="settings-grid placement-grid">
+            <label>水平位置 / %<input id="place-x" type="number" min="5" max="95" step="1" value="60"></label>
+            <label>底部位置 / %<input id="place-y" type="number" min="25" max="96" step="1" value="82"></label>
+            <label><span id="place-width-label">桶宽 / 图片宽度 %</span><input id="place-width" type="number" min="3.5" max="18" step="0.1" value="8.5"></label>
+            <label id="place-height-field" hidden>编辑区域高 / 图片高度 %<input id="place-height" type="number" min="8" max="70" step="0.1" value="31"></label>
+          </div>
+        </div>
+      </div>
+      <label class="field-label" for="prompt">生成内容 <span>可自定义描述</span></label>
+      <textarea id="prompt" rows="4" maxlength="2000" placeholder="沿道路车道线生成一排橙色反光交通锥……"></textarea>
+      <div class="field-note" id="object-note">默认沿检测到的车道线添加交通锥，遮罩外尽量保留原图。</div>
+      <label class="field-note"><input id="protect-original" type="checkbox" checked> 尽量保护已识别的原有车辆与行人</label>
+      <p class="field-note">保护区域可在生成画布查看；识别可能漏检。需要替换原有人物时可关闭此项。</p>
+      <div id="native-speed" hidden><label class="field-label" for="generation-preset">生成档位</label><select id="generation-preset" class="object-select"><option value="30">标准 · 30 步</option><option value="20">快速预览 · 20 步</option><option value="custom">自定义步数</option></select><p class="field-note">快速预览用于试位置和内容；需要细节时可使用标准档位。</p></div>
+      <details class="advanced"><summary>生成参数 <span>调整尺寸与细节 ↗</span></summary><div class="settings-grid">
+        <label>输出最长边<select id="max-side"><option value="768">768 px · 快速预览</option><option value="1024" selected>1024 px · 均衡</option><option value="1536">1536 px · 更高细节</option><option value="1920">1920 px · 原图上限</option></select></label>
+        <label>采样步数<input id="steps" type="number" value="30" min="1" max="50"></label>
+        <label id="expand-field">遮罩扩展 / px<input id="expand" type="number" value="50" min="0" max="180"></label>
+        <label>随机种子<input id="seed" type="number" min="0" max="9007199254740991" placeholder="留空，每次随机"></label>
+      </div><p>输出保留图片比例，不放大原图。较高尺寸需要更长时间。</p></details>
+      <div class="error" id="error" role="alert" hidden></div>
+      <button id="start" class="primary" disabled><span>启动自动生成</span><span>↗</span></button>
+      <p class="start-note" id="start-note">自动生成遮罩后直接生图，无需手动导入工作流。</p>
+    </section>
+    <section class="panel output-panel" aria-labelledby="output-heading">
+      <div class="panel-heading"><h2 id="output-heading"><em>02</em> 生成画布</h2><div class="tabs" role="tablist" aria-label="查看阶段图片"><button role="tab" aria-selected="false" data-tab="input">原图</button><button role="tab" aria-selected="false" data-tab="overlay">遮罩</button><button role="tab" aria-selected="false" data-tab="protection-overlay">保护</button><button role="tab" aria-selected="true" data-tab="result">结果</button></div></div>
+      <div class="canvas" id="canvas"><div class="canvas-grid"></div><div id="canvas-empty" class="canvas-empty"><div class="road-symbol"><i></i><i></i><i></i></div><h3>让新的场景发生</h3><p>生成结果与遮罩将在这里呈现</p><span>UPLOAD → MASK → GENERATE</span></div><img id="canvas-image" alt="生成预览" hidden><div id="canvas-badge" class="canvas-badge" hidden></div><button id="zoom" class="zoom" hidden aria-label="放大查看图片">⤢</button></div>
+      <div class="run-status" id="run-status" aria-live="polite"><div class="status-title"><span id="status-label">等待一张道路图片</span><button id="cancel" hidden>取消任务</button><span id="percent">—</span></div><div class="progress-track"><div id="progress"></div></div><div class="stages"><span data-stage="0"><i>1</i>排队</span><span data-stage="1"><i>2</i>生成遮罩</span><span data-stage="2"><i>3</i>场景重绘</span><span data-stage="3"><i>4</i>完成</span></div></div>
+      <div class="result-footer"><div id="result-meta">所有步骤自动衔接 · 结果保留在服务器</div><div class="downloads"><a id="download-mask" hidden>下载遮罩 ↓</a><a id="download-bundle" hidden>实验包 ↓</a><a id="download-result" class="download-result" hidden>下载结果 ↓</a></div></div>
+    </section>
+  </main>
+  <section class="panel review-panel" id="review-panel" hidden>
+    <div class="panel-heading"><h2>结果审核与标注</h2><span id="review-state" class="caps">待审核</span></div>
+    <p class="field-note">在结果图上拖动，框住实际生成的物体。绿色重绘区域不是物体标注。交通锥可标多个框；其余模式请标注本次新增或替换的一个目标。</p>
+    <canvas id="review-canvas" aria-label="拖动绘制实际物体标注框"></canvas>
+    <label class="field-label" for="review-notes">审核备注</label>
+    <textarea id="review-notes" rows="2" placeholder="记录物体、位置、透视、阴影和背景是否合理"></textarea>
+    <div class="review-actions"><button id="clear-boxes">清空标注框</button><button id="accept-review">通过并保存标注</button><button id="reject-review">标为不合格</button><a href="api/export" download>导出已通过的目标标注 ↓</a></div>
+    <p class="field-note">导出只包含本次生成并审核的目标框。替换旧牌时需更新旧标注；用于完整场景训练前，还需复核原有物体与遮挡，并按原始背景划分训练与测试集。</p>
+  </section>
+  <section class="history"><div class="history-heading"><h2>最近的实验<span id="history-count">0</span></h2><button id="refresh">刷新 ↻</button></div><div id="history-list" class="history-list"><p class="history-empty">还没有生成记录。第一张新场景，从上方开始。</p></div></section>
+  <footer><span>ROADLAB / 道路场景生成</span><span>CLRNet × FLUX Fill <i>●</i> SITP</span></footer>
+</div>
+<dialog id="viewer"><button id="close-viewer" aria-label="关闭预览">关闭 ×</button><img id="large-image" alt="大图预览"></dialog>
+<script src="static/app.js?v=20261101-protection-cache"></script>
+</body></html>

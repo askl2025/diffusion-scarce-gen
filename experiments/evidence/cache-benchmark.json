@@ -1,0 +1,110 @@
+[
+  {
+    "variant": "before",
+    "iteration": 0,
+    "seconds": 5.1701,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "before",
+    "iteration": 1,
+    "seconds": 4.9838,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "before",
+    "iteration": 2,
+    "seconds": 5.6745,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "optimized-cold",
+    "iteration": 0,
+    "seconds": 5.0922,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "lane_cache": {
+        "hit": false,
+        "key": "5c01d98b92240f53153d262fdaef28b8fa6b0702c2a6157f9c8c65e510a976db",
+        "backend_sha256": "5c98c497dcdd72493bcf957c65137e804324f009bc60c94d461d7b3ade6d65a4",
+        "seconds": 3.8051
+      },
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "optimized-warm",
+    "iteration": 0,
+    "seconds": 0.7124,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "lane_cache": {
+        "hit": true,
+        "key": "5c01d98b92240f53153d262fdaef28b8fa6b0702c2a6157f9c8c65e510a976db",
+        "backend_sha256": "5c98c497dcdd72493bcf957c65137e804324f009bc60c94d461d7b3ade6d65a4",
+        "seconds": 0.0816
+      },
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "optimized-warm",
+    "iteration": 1,
+    "seconds": 0.7374,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "lane_cache": {
+        "hit": true,
+        "key": "5c01d98b92240f53153d262fdaef28b8fa6b0702c2a6157f9c8c65e510a976db",
+        "backend_sha256": "5c98c497dcdd72493bcf957c65137e804324f009bc60c94d461d7b3ade6d65a4",
+        "seconds": 0.0827
+      },
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  },
+  {
+    "variant": "optimized-warm",
+    "iteration": 2,
+    "seconds": 0.75,
+    "mask_sha256": "4ec5b76ba702877baff726fa301de9f5fb6d688745c076d6297cf0338e058067",
+    "metadata": {
+      "lane_count": 4,
+      "backend": "CLRNet R18",
+      "lane_cache": {
+        "hit": true,
+        "key": "5c01d98b92240f53153d262fdaef28b8fa6b0702c2a6157f9c8c65e510a976db",
+        "backend_sha256": "5c98c497dcdd72493bcf957c65137e804324f009bc60c94d461d7b3ade6d65a4",
+        "seconds": 0.0812
+      },
+      "expand": 50,
+      "coverage": 0.3139181698069853
+    }
+  }
+]

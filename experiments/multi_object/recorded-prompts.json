@@ -1,0 +1,134 @@
+{
+  "concrete_row": {
+    "id": "concrete_row-bg29-s202611301-seq",
+    "prompt": "One additional tall upright grey concrete Jersey barrier standing in this selected construction-lane location. One heavy solid concrete barricade about one metre tall and one metre long, with a high vertical upper wall, a narrow top edge, a broad outward-sloping lower base and thick solid ends. A substantial standing wall with a tall broad front face. Rough weathered grey aggregate and irregular small stains. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. The new object touches the existing pavement with a natural contact shadow. Existing nearby street equipment stays in its original position. No lettering or logos.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 3,
+    "normalized_boxes": [
+      [
+        0.5,
+        0.71,
+        0.13,
+        0.2
+      ],
+      [
+        0.65,
+        0.71,
+        0.13,
+        0.2
+      ],
+      [
+        0.8,
+        0.71,
+        0.13,
+        0.2
+      ]
+    ]
+  },
+  "reflective_bollards": {
+    "id": "reflective_bollards-bg4-s202611301-l2",
+    "prompt": "Exactly three cylindrical roadside safety bollards placed along this pavement edge. Three separate upright round steel posts, each with alternating black and yellow reflective bands and a small dark anchored base. Cylindrical rather than conical bodies. The nearer post appears larger in perspective. Ordinary worn real street equipment. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. All new objects touch the existing pavement with natural contact shadows. Preserve the surrounding scene. No lettering, logos or decorative graphics.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 3,
+    "normalized_boxes": [
+      [
+        0.7375,
+        0.62,
+        0.025,
+        0.11
+      ],
+      [
+        0.8335,
+        0.68,
+        0.033,
+        0.15
+      ],
+      [
+        0.93,
+        0.74,
+        0.04,
+        0.19
+      ]
+    ]
+  },
+  "stone_balls": {
+    "id": "stone_balls-bg20-s202611301-seq",
+    "prompt": "One additional solid grey granite spherical bollard at this selected pavement-edge location. One round stone ball on a small low circular stone base. Fine speckled rough granite and subtle weathering. The complete spherical body and its supporting base are visible. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. The new object touches the existing pavement with a natural contact shadow. Existing nearby street equipment stays in its original position. No lettering or logos.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 2,
+    "normalized_boxes": [
+      [
+        0.685,
+        0.735,
+        0.05,
+        0.095
+      ],
+      [
+        0.7325,
+        0.8,
+        0.075,
+        0.14
+      ]
+    ]
+  },
+  "construction_board": {
+    "id": "construction_board-bg29-s202611302-p2",
+    "prompt": "One freestanding construction roadblock formed by a single continuous long rectangular horizontal beam on two simple dark metal support legs at its far ends. The complete wide face is covered edge to edge with a plain uninterrupted pattern of broad alternating yellow and black diagonal painted stripes. One continuous striped beam with a small amount of realistic wear, and two support feet resting on the road. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. The new object touches the existing pavement with a natural contact shadow. Existing nearby street equipment stays in its original position. No lettering or logos.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 1,
+    "normalized_boxes": [
+      [
+        0.57,
+        0.67,
+        0.29,
+        0.25
+      ]
+    ]
+  },
+  "rear_worker": {
+    "id": "rear_worker-bg12-s202611301",
+    "prompt": "One adult road construction worker viewed from behind, standing naturally at the edge of this construction area. Full body visible, wearing one ordinary yellow safety helmet, a worn orange high visibility vest with simple pale reflective strips over a grey jacket, dark work trousers and practical dark boots. Two arms and two legs, both boots on the existing pavement, relaxed posture, face turned away from the camera. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. All new objects touch the existing pavement with natural contact shadows. Preserve the surrounding scene. No lettering, logos or decorative graphics.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 1,
+    "normalized_boxes": [
+      [
+        0.34,
+        0.45,
+        0.07,
+        0.34
+      ]
+    ]
+  },
+  "sandbag_row": {
+    "id": "sandbag_row-bg12-s202611301",
+    "prompt": "Exactly three filled tan woven sandbags lying side by side on the road at this construction area. One low horizontal row of three individual full heavy sacks, all resting flat on the ground in a single layer, separated by small visible gaps. Each sack has a soft bulging rectangular body with sagging fabric, creases, a short tied end and a flattened contact surface. Ordinary dusty coarse woven fabric, realistic irregular wrinkles. Match the existing street photograph in perspective, ambient light, colour temperature, surface detail and apparent scale. All new objects touch the existing pavement with natural contact shadows. Preserve the surrounding scene. No lettering, logos or decorative graphics.",
+    "steps": 30,
+    "guidance": 30,
+    "requested_count": 3,
+    "normalized_boxes": [
+      [
+        0.17,
+        0.8,
+        0.13,
+        0.105
+      ],
+      [
+        0.33,
+        0.8,
+        0.13,
+        0.105
+      ],
+      [
+        0.49,
+        0.8,
+        0.13,
+        0.105
+      ]
+    ]
+  }
+}

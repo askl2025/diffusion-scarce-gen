@@ -1,0 +1,5 @@
+* text=auto
+*.sh text eol=lf
+*.yml text eol=lf
+scripts/LanDetect/_vendor/** text eol=lf
+scripts/LanDetect/_vendor/CLRNet/** -whitespace

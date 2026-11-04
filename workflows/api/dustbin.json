@@ -1,0 +1,92 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux1-fill-dev.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "roadlab/example-dustbin/input.png"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "roadlab/example-dustbin/mask.png"
+    }
+  },
+  "6": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": [
+        "5",
+        0
+      ],
+      "channel": "green"
+    }
+  },
+  "9": {
+    "class_type": "FluxFillSampler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "4",
+        0
+      ],
+      "mask": [
+        "6",
+        0
+      ],
+      "text": "A single green wheeled plastic trash bin with a closed lid, standing upright on the asphalt road. Full bin visible, two small black wheels at the bottom, realistic perspective from a front-facing car camera, natural contact shadow on the road, lighting and sharpness consistent with the surrounding street photograph.",
+      "seed": 42,
+      "steps": 30,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1.0,
+      "noise_mask": true,
+      "batch_size": 1,
+      "differential_attention": true,
+      "use_teacache": false
+    }
+  },
+  "12": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "roadlab/example-dustbin"
+    }
+  }
+}
