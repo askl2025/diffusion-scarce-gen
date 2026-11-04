@@ -1,0 +1,6 @@
+-r core.txt
+torch>=2.0,<3
+torchvision>=0.15,<1
+opencv-python-headless>=4.8,<5
+scipy>=1.10,<2
+gdown>=5,<6

@@ -1,0 +1,202 @@
+{
+  "traffic_cone": {
+    "1": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "flux1-fill-dev.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "2": {
+      "class_type": "DualCLIPLoader",
+      "inputs": {
+        "clip_name1": "clip_l.safetensors",
+        "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+        "type": "flux",
+        "device": "default"
+      }
+    },
+    "3": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "ae.safetensors"
+      }
+    },
+    "4": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "roadlab/baseline/input.png"
+      }
+    },
+    "5": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "roadlab/baseline/mask.png"
+      }
+    },
+    "6": {
+      "class_type": "ImageToMask",
+      "inputs": {
+        "image": [
+          "5",
+          0
+        ],
+        "channel": "green"
+      }
+    },
+    "13": {
+      "class_type": "LoraLoader",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "clip": [
+          "2",
+          0
+        ],
+        "lora_name": "FLUX_CodaRoadBarrier_v1.0.safetensors",
+        "strength_model": 1.0,
+        "strength_clip": 1.0
+      }
+    },
+    "9": {
+      "class_type": "FluxFillSampler",
+      "inputs": {
+        "model": [
+          "13",
+          0
+        ],
+        "clip": [
+          "2",
+          0
+        ],
+        "vae": [
+          "3",
+          0
+        ],
+        "image": [
+          "4",
+          0
+        ],
+        "mask": [
+          "6",
+          0
+        ],
+        "text": "test",
+        "seed": 42,
+        "steps": 30,
+        "cfg": 1.0,
+        "sampler_name": "euler",
+        "scheduler": "beta",
+        "denoise": 1.0,
+        "noise_mask": true,
+        "batch_size": 1,
+        "differential_attention": true,
+        "use_teacache": false
+      }
+    },
+    "12": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "9",
+          0
+        ],
+        "filename_prefix": "roadlab/baseline"
+      }
+    }
+  },
+  "dustbin": {
+    "1": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "flux1-fill-dev.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "2": {
+      "class_type": "DualCLIPLoader",
+      "inputs": {
+        "clip_name1": "clip_l.safetensors",
+        "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+        "type": "flux",
+        "device": "default"
+      }
+    },
+    "3": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "ae.safetensors"
+      }
+    },
+    "4": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "roadlab/baseline/input.png"
+      }
+    },
+    "5": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "roadlab/baseline/mask.png"
+      }
+    },
+    "6": {
+      "class_type": "ImageToMask",
+      "inputs": {
+        "image": [
+          "5",
+          0
+        ],
+        "channel": "green"
+      }
+    },
+    "9": {
+      "class_type": "FluxFillSampler",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "clip": [
+          "2",
+          0
+        ],
+        "vae": [
+          "3",
+          0
+        ],
+        "image": [
+          "4",
+          0
+        ],
+        "mask": [
+          "6",
+          0
+        ],
+        "text": "test",
+        "seed": 42,
+        "steps": 30,
+        "cfg": 1.0,
+        "sampler_name": "euler",
+        "scheduler": "beta",
+        "denoise": 1.0,
+        "noise_mask": true,
+        "batch_size": 1,
+        "differential_attention": true,
+        "use_teacache": false
+      }
+    },
+    "12": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "9",
+          0
+        ],
+        "filename_prefix": "roadlab/baseline"
+      }
+    }
+  }
+}

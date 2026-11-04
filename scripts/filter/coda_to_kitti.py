@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 def convert_coda_to_kitti(json_path, output_dir):
     """
-    解析 CODA 原生 COCO 格式并无损映射至 KITTI 格式
+    将 CODA 的类别与2D框写入 KITTI 标签列，缺失的3D字段使用占位值
     :param json_path: CODA 标注文件路径 (如 annotations.json)
     :param output_dir: KITTI 格式标签存储目录
     """

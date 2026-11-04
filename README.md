@@ -1,84 +1,84 @@
-# Diffusion Scarce Gen
+# RoadLab / Diffusion Scarce Gen
 
-基于扩散模型的稀缺图像生成工作流工具集，用于自动驾驶场景下的数据增强。
+面向道路稀缺目标的数据增强工具集。项目从稀缺样本筛选和ComfyUI原型发展为可控物体生成、实验记录及审核导出的RoadLab网页系统。
 
-## 目录结构
+## 当前功能
 
-```
-├── scripts/                # Python数据处理脚本
-│   ├── scarce_sample_filter.py   # CODA数据集稀缺样本筛选
-│   ├── coda_to_kitti.py          # CODA标注格式转KITTI格式
-│   └── LanDetect/                # 车道线检测与掩膜生成 (Ultra-Fast-Lane-Detection)
-│       ├── detect_lanes.py       # 主脚本：批量生成二值掩膜
-│       └── generate_cover.py     # 覆盖图脚本：车道线红色叠加可视化
-│
-└── workflows/              # ComfyUI工作流 (JSON)
-    ├── segment_background.json   # 抠图换背景 (GroundingDINO + SAM)
-    ├── image_upscale.json        # 图像放大
-    ├── flux_txt2img.json         # FLUX基础文生图
-    ├── ipadapter_inpainting.json # IP-Adapter特征提取 + Inpainting局部重绘
-    └── sdxl_multistyle.json      # SDXL多风格生成
-```
+| 入口 | 位置与生成路线 |
+|---|---|
+| 交通锥 | CLRNet R18预测车道，构造遮罩，FLUX Fill结合外部RoadBarrier LoRA |
+| 垃圾桶 | 手动接地点或车道几何建议，FLUX Fill基座 |
+| 简单警示牌 | 手动矩形，原生Fill条件、采样、解码和ROI合成 |
+| 背向行人 | 手动人行道矩形，同一原生路线 |
 
-## 数据集
+支持上传、遮罩预览、串行任务、进度、取消、历史查看、实验包及结果标框。输入、执行图、参数、来源哈希和审核意见随任务保存。只有完成且经成员明确通过、具有实际目标框的结果才进入COCO导出。
 
-本项目使用以下公开数据集：
+成排水泥墩、反光柱、石球、施工挡板、背向施工人员和沙袋属于[独立实验](experiments/multi_object)，尚未增加为正式网页入口。生成数据的检测增益仍待独立标注和检测器对照验证。
 
-| 数据集 | 说明 | 下载地址 |
-|--------|------|----------|
-| KITTI 2D Object | 自动驾驶目标检测基准，7481张训练图像 | [KITTI官网](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=2d) |
-| CODA | 面向Corner Case的自动驾驶数据集 | [CODA官网](https://coda-dataset.github.io/download.html) |
+## 代表结果
 
-## 相关项目
+| 简单警示牌 | 背向行人 |
+|---|---|
+| ![警示牌生成示例](examples/images/warning-sign.png) | ![背向行人生成示例](examples/images/pedestrian.png) |
+| 成排水泥墩实验 | 反光柱实验 |
+| ![水泥墩实验候选](examples/images/concrete-row.png) | ![反光柱实验候选](examples/images/bollards.png) |
 
-| 项目 | 说明 | 链接 |
-|------|------|------|
-| Ultra-Fast-Lane-Detection | LanDetect 基于的原始车道线检测模型 (ECCV 2020) | [GitHub](https://github.com/cfzd/Ultra-Fast-Lane-Detection) |
+图片为模型输出的展示样例；[来源和状态](examples/README.md)保留对应案例，不作为独立测试集成功率或人工真值。
 
-## 快速使用
-
-### Python脚本
+## 安装与离线检查
 
 ```bash
-pip install -r requirements.txt
-
-# 稀缺样本筛选
-python scripts/scarce_sample_filter.py
-
-# CODA转KITTI格式
-python scripts/coda_to_kitti.py
+python -m venv .venv
+# Linux/macOS: source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python scripts/run_checks.py
+python scripts/export_workflows.py
 ```
 
-使用前请修改脚本中的数据路径配置。
+核心安装足以运行CPU测试和导出API图。车道模型另装`requirements/lane.txt`，语义保护另装`requirements/scene.txt`。ComfyUI、模型权重与节点需要单独配置；本仓库不含模型权重、运行环境或LoRA训练材料。
 
-### LanDetect 车道线检测
+本次本地27项CPU检查及依赖版本见[验证记录](docs/validation.md)。GitHub自动检查状态以对应提交的Actions页面为准。
+
+## 启动网页
+
+先完成[部署说明](docs/deployment.md)中的模型、节点和共享输入目录配置，然后运行：
 
 ```bash
-cd scripts/LanDetect
-pip install torch torchvision opencv-python numpy scipy gdown
-
-# 生成车道线二值掩膜 (output/)
-python detect_lanes.py
-
-# 生成车道线覆盖图 — 红色车道叠加到原图 (cover/)
-python generate_cover.py
-python generate_cover.py --alpha 0.6 --lane-width 20
-
-# 命令行参数
-#   --input-dir   ./input         输入图片目录
-#   --output-dir  ./output(cover)  输出目录
-#   --model-path  ./culane_18.pth  模型路径 (缺失时自动下载)
-#   --lane-width  25               车道线宽度 (px)
-#   --alpha       0.45             覆盖图透明度 (仅 generate_cover.py)
-#   --no-cuda                      强制 CPU
+python roadlab_web/app.py
 ```
 
-模型基于 Ultra-Fast-Lane-Detection (ECCV 2020)，使用 CULane 预训练的 ResNet-18 backbone。
+默认打开`http://127.0.0.1:6008`。Linux也可复制`.env.example`为`.env`，配置后执行`bash roadlab_web/start.sh`。`start.sh`以前台运行方式交给终端或服务管理器管理。
 
-### ComfyUI工作流
+无ComfyUI时，页面仍可启动，健康检查会报告未就绪。真正生成需要GPU与外部模型；交通锥路线还需要自行提供已有RoadBarrier LoRA，警示牌和行人路线不依赖该LoRA。
 
-将 `workflows/` 目录下的 JSON 文件导入 ComfyUI 即可使用。
+## 目录
 
-## 许可证
+```text
+roadlab_web/             正式网页、配置、缓存、审核与测试
+scripts/filter/         稀缺度筛选与COCO到KITTI 2D标签转换
+scripts/LanDetect/      旧UFLD入口和CLRNet R18适配（保留历史目录拼写）
+scripts/placement/      早期透视布设工具
+workflows/              早期界面工作流、XR工作流、网页API图
+experiments/            多物体图准备工具与历史实验记录
+requirements/          核心、车道和场景分析依赖
+tests/                  冻结执行图和可移植性测试
+docs/                   架构、部署、模型、复现及评测口径
+```
 
-MIT License
+## 早期工具
+
+```bash
+python scripts/filter/scarce_sample_filter.py
+python scripts/filter/coda_to_kitti.py
+python scripts/LanDetect/detect_lanes.py --help
+python scripts/LanDetect/detect_lanes_clrnet.py --help
+```
+
+筛选脚本的数据路径在文件末尾配置。COCO到KITTI转换只对应类别与2D框，3D字段为占位值。[工作流格式](workflows/README.md)、[方法与模块](docs/architecture.md)、[中期更新](docs/midterm-progress.md)、[评测口径](docs/evaluation-notes.md)。
+
+## 来源与许可
+
+数据来源：[KITTI](https://www.cvlibs.net/datasets/kitti/)、[CODA](https://coda-dataset.github.io/)。完整数据集请从原发布方获取。
+
+项目自有代码沿用[MIT](LICENSE)。CLRNet快照保留其Apache-2.0许可证；模型和数据的使用分别遵循原发布方条款，详见[第三方说明](THIRD_PARTY_NOTICES.md)。

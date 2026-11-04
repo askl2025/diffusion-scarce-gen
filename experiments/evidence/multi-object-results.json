@@ -1,0 +1,1741 @@
+{
+  "summary": {
+    "diffusion_outputs": 49,
+    "categories": 6,
+    "comfy_prompt_count": 49,
+    "sampler_passes": 77,
+    "reviewer": "Codex auxiliary visual review, same reviewer; not blind human ground truth",
+    "by_category": {
+      "成排水泥墩": {
+        "待复核": 5,
+        "拒绝": 6,
+        "候选": 1
+      },
+      "反光防撞柱": {
+        "拒绝": 3,
+        "候选": 5,
+        "待复核": 1
+      },
+      "石球路障": {
+        "拒绝": 2,
+        "候选": 5,
+        "待复核": 1
+      },
+      "施工挡板": {
+        "拒绝": 5,
+        "待复核": 2,
+        "候选": 1
+      },
+      "背向施工人员": {
+        "候选": 4
+      },
+      "并排沙袋": {
+        "候选": 5,
+        "待复核": 3
+      }
+    },
+    "stage_counts": {
+      "initial": 25,
+      "refine": 4,
+      "confirm": 20
+    },
+    "outside_zero_blend_changed_pixels": 0,
+    "median_engine_seconds": 20.015,
+    "timing_by_strategy": {
+      "sequential_slots": {
+        "cases": 16,
+        "median_seconds": 55.313
+      },
+      "separate_planned_rectangles_joint_generation": {
+        "cases": 33,
+        "median_seconds": 18.472
+      }
+    },
+    "paired_comparisons": [
+      {
+        "parent": "concrete_row-bg12-s202611301",
+        "child": "concrete_row-bg12-s202611301-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, mask, blend and sampler; prompt only changed to emphasize tall vertical wall.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg12-s202611302",
+        "child": "concrete_row-bg12-s202611302-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, mask, blend and sampler; prompt only changed to emphasize tall vertical wall.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg29-s202611301",
+        "child": "concrete_row-bg29-s202611301-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, mask, blend and sampler; prompt only changed to emphasize tall vertical wall.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg29-s202611302",
+        "child": "concrete_row-bg29-s202611302-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, mask, blend and sampler; prompt only changed to emphasize tall vertical wall.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg12-s202611301",
+        "child": "concrete_row-bg12-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg12-s202611302",
+        "child": "concrete_row-bg12-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg29-s202611301",
+        "child": "concrete_row-bg29-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "concrete_row-bg29-s202611302",
+        "child": "concrete_row-bg29-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "reflective_bollards-bg20-s202611301",
+        "child": "reflective_bollards-bg20-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "reflective_bollards-bg20-s202611302",
+        "child": "reflective_bollards-bg20-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "stone_balls-bg20-s202611301",
+        "child": "stone_balls-bg20-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "stone_balls-bg20-s202611302",
+        "child": "stone_balls-bg20-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "construction_board-bg12-s202611301",
+        "child": "construction_board-bg12-s202611301-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, masks and sampler; prompt only changed to continuous striped beam.",
+        "same_seed": true
+      },
+      {
+        "parent": "construction_board-bg12-s202611302",
+        "child": "construction_board-bg12-s202611302-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, masks and sampler; prompt only changed to continuous striped beam.",
+        "same_seed": true
+      },
+      {
+        "parent": "construction_board-bg29-s202611301",
+        "child": "construction_board-bg29-s202611301-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, masks and sampler; prompt only changed to continuous striped beam.",
+        "same_seed": true
+      },
+      {
+        "parent": "construction_board-bg29-s202611302",
+        "child": "construction_board-bg29-s202611302-p2",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": true,
+        "comparison": "Same source, seed, masks and sampler; prompt only changed to continuous striped beam.",
+        "same_seed": true
+      },
+      {
+        "parent": "sandbag_row-bg12-s202611301",
+        "child": "sandbag_row-bg12-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "sandbag_row-bg12-s202611302",
+        "child": "sandbag_row-bg12-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "sandbag_row-bg29-s202611301",
+        "child": "sandbag_row-bg29-s202611301-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "sandbag_row-bg29-s202611302",
+        "child": "sandbag_row-bg29-s202611302-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "reflective_bollards-bg4-s202611301-l2",
+        "child": "reflective_bollards-bg4-s202611301-l2-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "reflective_bollards-bg4-s202611302-l2",
+        "child": "reflective_bollards-bg4-s202611302-l2-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "stone_balls-bg4-s202611301-l2",
+        "child": "stone_balls-bg4-s202611301-l2-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      },
+      {
+        "parent": "stone_balls-bg4-s202611302-l2",
+        "child": "stone_balls-bg4-s202611302-l2-seq",
+        "asset_identity": {
+          "input.png": true,
+          "generation-input.png": true,
+          "generation-mask.png": true,
+          "generation-blend.png": true
+        },
+        "prompt_only_graph_identity": null,
+        "comparison": "Same source, planned slots and base seed; sequential single-object prompts use one pass per slot with deterministic seed offsets. More compute; workflow and text both changed, not a prompt-only ablation.",
+        "same_seed": true
+      }
+    ],
+    "production_modified": false,
+    "is_training_ground_truth": false
+  },
+  "cases": [
+    {
+      "id": "concrete_row-bg12-s202611301",
+      "round": "initial",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "新增三个分开的水泥块，横向排布和接地可辨；整体偏矮、上表面过宽，尚未达到预期高立式隔离墩形体。"
+      },
+      "engine_seconds": 19.836,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "c86cab8fa9bfa73512f4503cd15e49166a8a7398e043b42e25d8984577908dbb",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg12-s202611302",
+      "round": "initial",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "数量为三个，但多数呈平放厚水泥板，目标立式墩体形状不合格。"
+      },
+      "engine_seconds": 18.108,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "af5b221ffa8fe1ecca71aaa1ed85c9a3715c0786b9307557f6cf98df862c80ba",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611301",
+      "round": "initial",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "三个目标均偏低矮长方块，缺少高立式上部；数量正确不能替代形体合格。"
+      },
+      "engine_seconds": 18.242,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "acfc08334287dbb059aba776b3891a1b75282f6eed7dce4b81af0a105b3f3927",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611302",
+      "round": "initial",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "三个目标主要是薄厚板或低块，未形成期望的立式隔离墩。"
+      },
+      "engine_seconds": 18.35,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "5fa7bef4d8519c116eb99902d21f0bee81dc21cd190fe1a956d9138d2cfa87f2",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg4-s202611301",
+      "round": "initial",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "4",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "只辨认到两个新增柱体；原选区接近灯杆和原车，保留作位置问题样例，未用于主展示。"
+      },
+      "engine_seconds": 20.236,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "3cd37fd36180bb848ce85cdffe25521b5bafa7cd1fdf923b49bd979f112a4722",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg20-s202611301",
+      "round": "initial",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "20",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "三个新增物体基本可辨，但明显为上窄下宽的锥形，与请求的直立圆柱式防撞柱不符。"
+      },
+      "engine_seconds": 18.229,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "faea9545ecddb03d9a82bd68034199223160aecb7c7bc4f2045cc507ce26e6e4",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg20-s202611302",
+      "round": "initial",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "20",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "只辨认到两个新增目标，且偏锥形；原有近处路锥不能算作新增第三根。"
+      },
+      "engine_seconds": 18.245,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "bbcf0d82a2c6cdbc75386a0e15b38e02f8289bf38b0a2bb8740928f3d946b48b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg20-s202611301",
+      "round": "initial",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "20",
+      "seed": 202611301,
+      "requested_count": 2,
+      "review": {
+        "status": "拒绝",
+        "note": "仅新增一个石球，目标数量为两个。"
+      },
+      "engine_seconds": 20.112,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "db45a44cdf3bed9909604fdd16ed1ab7895c46ccd64eb4535fdeea7326c5a7ba",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg20-s202611302",
+      "round": "initial",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "20",
+      "seed": 202611302,
+      "requested_count": 2,
+      "review": {
+        "status": "拒绝",
+        "note": "仅新增一个石球，虽有花岗岩质感与底座，仍未满足两个目标的数量要求。"
+      },
+      "engine_seconds": 18.451,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "512626b50b58e3c065bf7e9b09bd5d009b555ff60a1366ae6d27c2c7f245757b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg12-s202611301",
+      "round": "initial",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "拒绝",
+        "note": "单挡板与支架成立，但面板出现明显额外文字／乱码，不符合纯条纹要求。"
+      },
+      "engine_seconds": 20.146,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "3649760d60f6e852b599d42e0a2e96b65005de8d940de172ec3c4d1339457f23",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg12-s202611302",
+      "round": "initial",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "待复核",
+        "note": "一个横向挡板和双支撑脚可辨，但条纹区留有疑似字形／杂图案，不能按纯条纹稳定成功计。"
+      },
+      "engine_seconds": 18.444,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "840d047d0086ec0846e95d7861726394c0ebd3e4d62eb3d2d0af5f9db28b87c5",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg29-s202611301",
+      "round": "initial",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "拒绝",
+        "note": "生成了两个独立挡板，目标要求一个连续挡板。"
+      },
+      "engine_seconds": 18.501,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "29e6c58fb0378dc51a618c2bbd1280b08379c286f30a1a099b28406a10c82a9b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg29-s202611302",
+      "round": "initial",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "拒绝",
+        "note": "生成了两个独立挡板，且主要呈箭头图案，数量和指定条纹均需修正。"
+      },
+      "engine_seconds": 18.515,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "eff7d37318a934dbc0060c28b81834371a1fa7489f809eb3703a6c5f6e4bf398",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "rear_worker-bg12-s202611301",
+      "round": "initial",
+      "category": "rear_worker",
+      "label": "背向施工人员",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "候选",
+        "note": "单个背向施工人员完整，安全帽、反光背心、双腿和落脚点可辨；尺度和阴影保留人工确认。"
+      },
+      "engine_seconds": 20.134,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "d289a0ca2af075d96dacff515878accde85cfc944fb087e428a3a9b5b59102eb",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "rear_worker-bg12-s202611302",
+      "round": "initial",
+      "category": "rear_worker",
+      "label": "背向施工人员",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "候选",
+        "note": "单个背向施工人员，身体与双脚可辨，原图其他人员保持在选区外；细小手部不作精确解剖保证。"
+      },
+      "engine_seconds": 18.471,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "805fcd83ce8316fe57895278f28d8d895c355b09465efe29a99e67ea22435633",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "rear_worker-bg29-s202611301",
+      "round": "initial",
+      "category": "rear_worker",
+      "label": "背向施工人员",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "候选",
+        "note": "单个背向工人与雾雨环境方向相容，整体与双脚完整；脚部阴影及路缘落点仍需人工核对。"
+      },
+      "engine_seconds": 18.442,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "64e399d8ae9ec3a56993d3c174c13adfdc710b5b07623faff572f34d0a5794a6",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "rear_worker-bg29-s202611302",
+      "round": "initial",
+      "category": "rear_worker",
+      "label": "背向施工人员",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "候选",
+        "note": "背向安全帽与背心工人可辨，原有人车在编辑区域外；暗部细节与接地保留人工确认。"
+      },
+      "engine_seconds": 18.473,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "36d38bf855a7af948f5021b9a08d1f318d759c64710e26daaf95a543920fc346",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg12-s202611301",
+      "round": "initial",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个独立沙袋横向单层排列，粗布颗粒、皱褶与重量感较可辨；仍属辅助视觉意见。"
+      },
+      "engine_seconds": 20.057,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "8378ae976df9f45bb8c64461d066d615fa3e5b1a92ad27b31520918a777c50a0",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg12-s202611302",
+      "round": "initial",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个沙袋并排、间隙与接地明确；外形略像扁枕，装填饱满度可继续改善。"
+      },
+      "engine_seconds": 18.524,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "97ede6954211f98210ca77e2eb04f74deba7909cdc1317d44149ac359597c595",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg29-s202611301",
+      "round": "initial",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "数量为三个，但部分近似平摊布料，装填体积与闭合袋体不够明确。"
+      },
+      "engine_seconds": 18.459,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "f1de9707f3862f36394d1ee93d687210daaa561f651ebf994eb08ec2790ea343",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg29-s202611302",
+      "round": "initial",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "三个独立低袋体可辨，但较扁平，粗织材质和填充重量感仍需确认。"
+      },
+      "engine_seconds": 18.465,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "d771d83e176134cd1f52f62a5995f4cf71641996c8ea15c831d3c62806c462c7",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg4-s202611301-l2",
+      "round": "initial",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "4",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "修正位置后有三个分开的柱体，黑黄横带与柱状形体可辨；仍需核对尺度和新旧设施材质差异。"
+      },
+      "engine_seconds": 20.149,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "cf5d72c067304be7f8566b2626e5e68674cf7cb56ba73eb0ff23665fa98d7805",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg4-s202611302-l2",
+      "round": "initial",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "4",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个新增柱体可辨，位置避开原车；近大远小、圆柱轮廓及底部接地可继续人工复核。"
+      },
+      "engine_seconds": 18.506,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "7d2de28cdf6516ae951229b2217912b438013688910763e031a79e9f03ae446a",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg4-s202611301-l2",
+      "round": "initial",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "4",
+      "seed": 202611301,
+      "requested_count": 2,
+      "review": {
+        "status": "候选",
+        "note": "两个新增石球及低底座可辨，粗颗粒材质和道路边缘位置相对协调；放置尺度仍待成员确认。"
+      },
+      "engine_seconds": 20.108,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "e9319453b1aa546d9f53897d63af6ea7ebad5bbbaee20878e90020edb2e62860",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg4-s202611302-l2",
+      "round": "initial",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "4",
+      "seed": 202611302,
+      "requested_count": 2,
+      "review": {
+        "status": "候选",
+        "note": "两个分开的石球接地，材质比光滑塑料更可辨；需核对路缘摆放与透视。"
+      },
+      "engine_seconds": 18.461,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "2b9bb650979b6997cdab3ac0bda0f373525cff579ccef9e6a7d2a3ac28175f17",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg12-s202611301-p2",
+      "round": "refine",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "同种子提示词对照保留三个实体块，但仍偏低矮近方块，未形成高立式上部，改词没有稳定解决形体。"
+      },
+      "engine_seconds": 20.015,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "a365370edbaa1d2f6701c93b6d32938593c407b7fb7417110348a20bf16d78be",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg12-s202611302-p2",
+      "round": "refine",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "三个目标仍是平放厚板，强调高立式文字后未修正。"
+      },
+      "engine_seconds": 18.16,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "49f1294f580239d8601dc91f0f6ba4dfb10fc244176ca9be0ea6aebd88454a71",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611301-p2",
+      "round": "refine",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "三个块体比首轮前脸略立起，但高墙型截面仍不明确，不能按高立式稳定通过。"
+      },
+      "engine_seconds": 18.255,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "81507b17e4d2e24ecac97829c9a1613d7e5c7d17324470d12a15f523b8d27c0a",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611302-p2",
+      "round": "refine",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "仍出现低板／槽形块，未满足高立式隔离墩形体要求。"
+      },
+      "engine_seconds": 18.365,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "c78412e948a241d563a464f73604d8ca463ef7e7f83d01bcefc181b7d2d65be0",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg12-s202611301-seq",
+      "round": "confirm",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "拒绝",
+        "note": "逐位置生成后，中央位置出现两个目标，共四个新增水泥体；部分还呈圆拱状，数量和形体均不稳定。"
+      },
+      "engine_seconds": 56.043,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "55a8c35dda8c4469c334497e4066f471b92b87585fbc2d063b90267c3c995cab",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg12-s202611302-seq",
+      "round": "confirm",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "三个立式实体墙块可辨，高度较首轮提高；左侧朝向与另两块不同，统一隔离墩截面和朝向仍不足。"
+      },
+      "engine_seconds": 55.106,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "bda0fad1bdd904569171c32b1de7f2e6279f7d5a328e6f35c94d91bc42347dba",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611301-seq",
+      "round": "confirm",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个分开的立式灰色墩体并排，粗糙材质、宽底和路面接触可辨；尺度、阴影和具体隔离墩截面仍需成员确认。"
+      },
+      "engine_seconds": 55.316,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "f459dae8e5f43791cda2608160886a6b599e9c51d8ef625dc50c0a67bd1fb144",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "concrete_row-bg29-s202611302-seq",
+      "round": "confirm",
+      "category": "concrete_row",
+      "label": "成排水泥墩",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "三个立式目标数量正确，但截面较像三角楔块，缺少一致的高直立上部，暂不视为指定Jersey形体通过。"
+      },
+      "engine_seconds": 55.275,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "bb491d87cd7b9da9ea37d978e59dc6f37090ea26726787481b0751baa3c2ed70",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg20-s202611301-seq",
+      "round": "confirm",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "20",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个新增直立圆柱与黑色横带可辨，较首轮锥体更接近目标；黄色偏鲜明、表面较新，材质融合仍待人工判断。"
+      },
+      "engine_seconds": 57.222,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "27912ea1148514e870f7b7d51b1c0f55e62342f4fea045bff54d234156b7d288",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg20-s202611302-seq",
+      "round": "confirm",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "20",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "新增数量为三个，但黑黄图案偏箭纹，柱体上部仍有风格漂移，不按固定横带样式稳定通过。"
+      },
+      "engine_seconds": 55.583,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "cbf02dbbb7e7e3ccd3093b9866c46f153586987fc1790bae449fddc22bb304f6",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg20-s202611301-seq",
+      "round": "confirm",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "20",
+      "seed": 202611301,
+      "requested_count": 2,
+      "review": {
+        "status": "候选",
+        "note": "同一来源和基础种子下由一个增加为两个独立石球，底座和颗粒质感可辨，路侧位置合理；不构成独立留出验证。"
+      },
+      "engine_seconds": 38.907,
+      "sampler_passes": 2,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "0709393c6b5101921a89d893ee188cf1158d82dd8b0220ee98a4ccdd34d4f774",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg20-s202611302-seq",
+      "round": "confirm",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "20",
+      "seed": 202611302,
+      "requested_count": 2,
+      "review": {
+        "status": "候选",
+        "note": "两个新增石球及底座可辨，较联合生成解决本图漏一个的问题；底座高低和阴影仍需人工确认。"
+      },
+      "engine_seconds": 37.111,
+      "sampler_passes": 2,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "f29f7bb4439fc4bfffe5cf674f98c58bb8e5b83edf992095351aafe6ef07442e",
+      "result_sha256": "5fe9f2d18449c86168b7159232d720bae5773032789b3e3350800afdca7f4c8b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg12-s202611301-p2",
+      "round": "confirm",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "拒绝",
+        "note": "单连续横板成立，但面板仍有明显额外字样，提示词没有消除文字问题。"
+      },
+      "engine_seconds": 20.578,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "862a968bb8140757ac02497180b6408fec9d70cabcfb82c4f179ca6086269aff",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg12-s202611302-p2",
+      "round": "confirm",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "拒绝",
+        "note": "生成了平放在地面的条纹长梁，未形成带双支撑脚的立式挡板。"
+      },
+      "engine_seconds": 18.556,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "478b8f370a8c928f2793a6b290bcc16e8f46853cd0908491bef1c211a163cad8",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg29-s202611301-p2",
+      "round": "confirm",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 1,
+      "review": {
+        "status": "待复核",
+        "note": "形成单连续面板并有支架，但图案是箭纹而非指定连续斜条纹，细支撑杆和接地还需复核。"
+      },
+      "engine_seconds": 18.472,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "b3601a18c67440d3d34418fd0ef970e92c1f8d60faebd3ed9286f71b1f33e9b3",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "construction_board-bg29-s202611302-p2",
+      "round": "confirm",
+      "category": "construction_board",
+      "label": "施工挡板",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 1,
+      "review": {
+        "status": "候选",
+        "note": "一个连续黄黑斜纹面板可辨，未见明显额外字样；两组细支架、底部接触和面板刚性仍需成员核对，单图不能代表全方向稳定。"
+      },
+      "engine_seconds": 18.436,
+      "sampler_passes": 1,
+      "mask_strategy": "separate_planned_rectangles_joint_generation",
+      "per_slot_checks": [],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "208feaa0935e98e6c81227891f23d9d267cf11fce3caa73b71b358d726540f7b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg12-s202611301-seq",
+      "round": "confirm",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "12",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个分开的充填袋体横向单层排列，粗布、褶皱和落地可辨；袋口较毛糙，仍需人工确认。"
+      },
+      "engine_seconds": 57.054,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "1ecb726c009c7a9349fb35299d1f1fd147627e7403e29159fc461b8fca9ee55b",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg12-s202611302-seq",
+      "round": "confirm",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "12",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "待复核",
+        "note": "数量为三个，但袋端呈卷层／开放卷布状，部分更像卷起的麻布而非封闭沙袋，不能只凭数量按成功计。"
+      },
+      "engine_seconds": 55.33,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "cb4d2f435deff5d498417a8ddf7c4735c8065ad83fe1acb3e583bb5d4a5ecdbb",
+      "result_sha256": "be4dee617fa77d2adb5481a6428805806f9a53e79f25eac9bab0beb420bb5d91",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg29-s202611301-seq",
+      "round": "confirm",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "29",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个充填袋体较首轮平摊布料更明确，横向单层并排、接地可辨；雾雨细节仍需人工查看原图。"
+      },
+      "engine_seconds": 55.284,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "d83ae9d5a0a830a921a0dfa89efb32af7290efd72811ba2673a87a04f43338ca",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "sandbag_row-bg29-s202611302-seq",
+      "round": "confirm",
+      "category": "sandbag_row",
+      "label": "并排沙袋",
+      "background": "29",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个独立袋体、布面隆起和接触阴影可辨；材质、袋口与填充重量感保留成员复核。"
+      },
+      "engine_seconds": 55.389,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "559b924e775cf20ec6ae4565ea99d1925f1f09a5c70921ae3db74d3017363ae8",
+      "result_sha256": "2f60b7bae1e6a40bbfc1f0cd86221f19fc2e1f95331d4927acdc9c029e770b2f",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg4-s202611301-l2-seq",
+      "round": "confirm",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "4",
+      "seed": 202611301,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个分开的黄色圆柱及黑色横带可辨，位置避开原车；顶盖样式和新旧漆面差异仍需核对。"
+      },
+      "engine_seconds": 57.222,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "f276d11761b4f6918ff986fd6d2c18593e5a7a89c9951cc575b880c8e1a00ce2",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "reflective_bollards-bg4-s202611302-l2-seq",
+      "round": "confirm",
+      "category": "reflective_bollards",
+      "label": "反光防撞柱",
+      "background": "4",
+      "seed": 202611302,
+      "requested_count": 3,
+      "review": {
+        "status": "候选",
+        "note": "三个新增圆柱，黑黄横带与底部接地可辨，近大远小；局部表面过于新净的观感仍由成员判断。"
+      },
+      "engine_seconds": 55.31,
+      "sampler_passes": 3,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 3,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "0ef417a7a7b24bffa0cf14c09042c33164e108067a3f0f30c4a0680e78e6e89e",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg4-s202611301-l2-seq",
+      "round": "confirm",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "4",
+      "seed": 202611301,
+      "requested_count": 2,
+      "review": {
+        "status": "候选",
+        "note": "两个新增石球均完整，颗粒材质与低底座可辨，数量和路侧落点成立；具体尺度需人工确认。"
+      },
+      "engine_seconds": 38.771,
+      "sampler_passes": 2,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "5de1945ea865f3dd19194d76b69140158842c21de7d9668153d3b9af0c6e791d",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    },
+    {
+      "id": "stone_balls-bg4-s202611302-l2-seq",
+      "round": "confirm",
+      "category": "stone_balls",
+      "label": "石球路障",
+      "background": "4",
+      "seed": 202611302,
+      "requested_count": 2,
+      "review": {
+        "status": "待复核",
+        "note": "两个石球数量正确，但底座形态与高度不一致，近处底座偏高，未满足统一低底座样式。"
+      },
+      "engine_seconds": 36.983,
+      "sampler_passes": 2,
+      "mask_strategy": "sequential_slots",
+      "per_slot_checks": [
+        {
+          "slot": 1,
+          "changed_outside_current_blend": 0
+        },
+        {
+          "slot": 2,
+          "changed_outside_current_blend": 0
+        }
+      ],
+      "source_sha256": "482ff2edc91b84cf1996bb65564feb74baf4712ce18915eff94f2a4cc326ea72",
+      "result_sha256": "e0776d5a3fe48d1129d4ae647cd4720abe18f51105c5bc32b066c6c3459c444e",
+      "changed_outside_zero_blend": 0,
+      "size": [
+        1024,
+        544
+      ]
+    }
+  ]
+}

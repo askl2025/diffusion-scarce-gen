@@ -1,0 +1,4 @@
+-r core.txt
+torch>=2.0,<3
+transformers>=4.37,<5
+scipy>=1.10,<2
